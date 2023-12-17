@@ -30,7 +30,7 @@ export function App() {
         setPage(prevPage => prevPage + 1);
       } catch (error) {
         console.error('Error fetching data:', error);
-        toast.error('Error fetching data');
+        toast.error('Error fetching data: ' + error.message);
       } finally {
         setLoading(false);
       }
