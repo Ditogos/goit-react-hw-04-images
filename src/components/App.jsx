@@ -27,7 +27,6 @@ export function App() {
       try {
         const data = await fetchGallery(searchQuery, page);
         setImages(prevImages => [...prevImages, ...data.hits]);
-        setPage(prevPage => prevPage + 1);
       } catch (error) {
         console.error('Error fetching data:', error);
         toast.error('Error fetching data: ' + error.message);
@@ -61,7 +60,7 @@ export function App() {
       <Searchbar onSubmit={handleFormSubmit} />
       {loading && <Loader />}
       {images && <ImageGallery showModal={showModal} img={images} />}
-      {!loading && images.length % 15 && <Button onFindMore={onFindMore} />}
+      {!loading && images.length >= 15 && <Button onFindMore={onFindMore} />}
       {isShowModal && <Modal closeModal={closeModal} modalImage={modalImage} />}
       <ToastContainer autoClose={3000} theme="colored" />
     </Wrapper>
